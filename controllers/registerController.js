@@ -1,40 +1,41 @@
-const userDB = {
+const usersDB = {
   users: require("../model/users.json"),
-  setUser: (data) => {
+  setUsers: function (data) {
     this.users = data;
   },
 };
-
 const fsPromises = require("fs").promises;
 const path = require("path");
 const bcrypt = require("bcrypt");
 
 const handleNewUser = async (req, res) => {
-  const { username, password } = req.body;
-  if (!password || !username)
-    return res.status(400).json({ message: "username and password required" });
-
-  // check for duplicate username
-  const duplicate = userDB.users.find((person) => person.username === username);
-  if (duplicate)
+  const { user, pwd } = req.body;
+  if (!user || !pwd)
     return res
-      .status(409)
-      .json({ message: "duplicate username! chose another one" }); //conflicting error code
+      .status(400)
+      .json({ message: "Username and password are required." });
+  // check for duplicate usernames in the db
+  const duplicate = usersDB.users.find((person) => person.username === user);
+  if (duplicate) return res.sendStatus(409); //Conflict
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // store the new this.user
-    const newUser = { username: username, password: hashedPassword };
-    userDB.setUser([...userDB.users, newUser]);
+    //encrypt the password
+    const hashedPwd = await bcrypt.hash(pwd, 10);
+    //store the new user
+    const newUser = {
+      username: user,
+      roles: { User: 2001 },
+      password: hashedPwd,
+    };
+    usersDB.setUsers([...usersDB.users, newUser]);
     await fsPromises.writeFile(
       path.join(__dirname, "..", "model", "users.json"),
-      JSON.stringify([...userDB.users, newUser])
+      JSON.stringify(usersDB.users)
     );
-    console.log(userDB.users);
-    res.status(201).json({ message: `user ${username} created succesfully` }); //new user added
+    console.log(usersDB.users);
+    res.status(201).json({ success: `New user ${user} created!` });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
-module.exports = handleNewUser;
+module.exports = { handleNewUser };

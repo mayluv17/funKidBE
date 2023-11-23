@@ -1,12 +1,22 @@
 const express = require("express");
 const router = express.Router();
-const employeeController = require("../../controllers/employeesController");
+const employeesController = require("../../controllers/employeesController");
+const ROLES_LIST = require("../../config/roles_list");
+const verifyRoles = require("../../middleware/verifyRoles");
 
 router
   .route("/")
-  //the middleware runs before the controller
-  .get(employeeController.getAllEmployees)
-  .post(employeeController.createNewEmployee)
-  .put(employeeController.updateEmployee);
-router.route("/:1d").get(employeeController.getEmployee);
+  .get(employeesController.getAllEmployees)
+  .post(
+    verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor),
+    employeesController.createNewEmployee
+  )
+  .put(
+    verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor),
+    employeesController.updateEmployee
+  )
+  .delete(verifyRoles(ROLES_LIST.Admin), employeesController.deleteEmployee);
+
+router.route("/:id").get(employeesController.getEmployee);
+
 module.exports = router;
