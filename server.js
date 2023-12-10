@@ -62,6 +62,6 @@ app.all("*", (req, res) => {
 app.use(errorHandler);
 
 mongoose.connection.once("open", () => {
-  console.log("connected to mongoDb");
+  console.log("connected to mongoDb...yahh!");
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });
