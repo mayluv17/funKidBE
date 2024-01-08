@@ -10,12 +10,13 @@ const verifyJWT = require("./middleware/verifyJWT");
 const cookieParser = require("cookie-parser");
 const credentials = require("./middleware/credentials");
 const mongoose = require("mongoose");
-const PORT = process.env.PORT || 3500;
+const PORT = process.env.PORT || 3600;
 
 const connectDb = require("./config/dbConn");
 
 //connect to mongo
 connectDb();
+
 // custom middleware logger
 app.use(logger);
 
@@ -37,6 +38,7 @@ app.use(cookieParser());
 
 //serve static files
 app.use("/", express.static(path.join(__dirname, "/public")));
+app.use(express.static('public'))
 
 // routes
 app.use("/", require("./routes/roots"));
@@ -46,7 +48,14 @@ app.use("/refresh", require("./routes/refresh"));
 app.use("/logout", require("./routes/logout"));
 
 app.use(verifyJWT);
-app.use("/employees", require("./routes/api/employees"));
+app.use("/category", require("./routes/api/tasks"));
+app.use("/alltask", require("./routes/api/tasks"));
+app.use("/singleTask", require("./routes/api/singleTask"));
+app.use("/singleTaskContent", require("./routes/api/taskData"));
+app.use("/image", require("./routes/api/imageUpload"));
+app.use("/completedTask", require("./routes/api/setTaskCompleted"));
+
+
 
 app.all("*", (req, res) => {
   res.status(404);

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { type } = require("os");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -18,7 +19,19 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  email: {
+    type: String,
+    required: true,
+  },
+  userVerified: {
+    type: Boolean,
+    default: false
+  },
   refreshToken: String,
+  points: {
+    type: Number, 
+    default: 0
+  }
 });
 
 module.exports = mongoose.model("User", userSchema);
