@@ -2981,3 +2981,9 @@
 20240120	22:40:45	50cd90db-d4e6-4819-a36e-f9ccde810c8b	OPTIONS	http://localhost:5173	/alltask
 20240120	22:40:45	f78f561f-d7a7-48cf-a8d0-1dc9c00cd4d5	GET	http://localhost:5173	/alltask
 20240120	22:40:45	09a31044-1a36-44d7-8f88-b914426279f6	GET	http://localhost:5173	/alltask
+20240425	00:06:34	07e5375f-d48c-4342-9c19-4aa7bc1ea001	GET	undefined	/category/cycling
+20240425	00:06:41	fafb3409-6bdf-4279-9d1a-fa895f20d3eb	GET	undefined	/category/cycling
+20240425	00:06:41	5ccbcf47-3676-45cc-a993-ed6542170548	GET	undefined	/favicon.ico
+20240425	00:07:01	7da63fac-176c-4702-ac81-43d3815ea3d6	GET	undefined	/category/swimming
+20240425	00:07:39	47e99ca7-d2ca-4657-8496-ca3c64f68bfb	GET	undefined	/category/cycling
+20240425	00:08:21	b47c0139-78d8-4a49-a874-413d05b14aa8	GET	undefined	/category/cycling
