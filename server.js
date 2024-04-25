@@ -10,7 +10,7 @@ const verifyJWT = require('./middleware/verifyJWT');
 const cookieParser = require('cookie-parser');
 const credentials = require('./middleware/credentials');
 const mongoose = require('mongoose');
-const PORT = process.env.PORT || 3600;
+const PORT = process.env.PORT || 4000;
 
 const connectDb = require('./config/dbConn');
 
