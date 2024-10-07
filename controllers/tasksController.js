@@ -16,7 +16,7 @@ const getAllTasksBycategory = async (req, res) => {
     if (!taskInCategory) return res.status(204).json({ 'message': 'No Tasks found in this category.' });
 
     const refactoredTaskInCategory = await taskInCategory.map(task => ({...task._doc, userCompleted:  task.userCompleted.includes(req.userId) }))
-    res.json(refactoredTaskInCategory);
+    res.status(200).json(refactoredTaskInCategory);
 }
 
 const getSingleTask = async (req, res) => {
@@ -24,8 +24,9 @@ const getSingleTask = async (req, res) => {
     const taskInCategory = await Tasks.findOne({_id: taskId});
     const userTaskActions = (await TaskData.find({ taskId: taskId, userId: req.userId }));
     if (!taskInCategory) return res.status(204).json({ 'message': 'This task is no longer availaible' });
-   
+
     const refactoredTaskInCategory = await {...taskInCategory._doc, userCompleted:  taskInCategory._doc.userCompleted.includes(req.userId) }
+    // console.log(userTaskActions[0].content[0].content)
     res.json({ singleTaskData: refactoredTaskInCategory, userTaskActions: userTaskActions });
 }
 

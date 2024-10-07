@@ -53,15 +53,14 @@ const uploadData = (req, res) => {
               } else if (err) {
                 console.log({ error: err });
               }
-              
+  
               const saved = await saveImageToDB(
                 req.body.taskId,
                 req.userId,
-                req.file.path.split('/').splice(1).join('/')
+                req.file.filename
               );
               let newSaved = await { ...saved._doc };
               delete newSaved.__v;
-
               res
                 .status(201)
                 .json({
