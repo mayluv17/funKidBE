@@ -46,9 +46,9 @@ app.use('/register', require('./routes/register'));
 app.use('/auth', require('./routes/auth'));
 app.use('/refresh', require('./routes/refresh'));
 app.use('/logout', require('./routes/logout'));
-app.use('/category', require('./routes/api/tasks'));
 
 app.use(verifyJWT);
+app.use('/category', require('./routes/api/tasks'));
 app.use('/alltask', require('./routes/api/tasks'));
 app.use('/singleTask', require('./routes/api/singleTask'));
 app.use('/singleTaskContent', require('./routes/api/taskData'));
