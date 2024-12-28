@@ -2,3 +2,9 @@
 20231018	23:26:05	3cd01b66-efc6-4cfa-bd9c-ceb437a0d85c	TypeError: req.json is not a function
 20231214	20:15:21	63458877-4c23-4b0c-8321-de8bb1db1679	Error: Not allowed by CORS
 20231225	00:21:10	c24a3072-ed8e-45cd-9d6e-26c5993e9541	ReferenceError: file is not defined
+20241207	18:07:45	a381f70d-aad7-49fb-b44a-bc307a9d6d96	TypeError: console is not a function
+20241207	18:07:45	60a57daf-42d1-48ce-a8c9-55ce7bd55bcf	TypeError: console is not a function
+20241207	18:08:06	8db4fc4e-15df-4329-91ab-e1a8136c466b	TypeError: console is not a function
+20241207	18:08:06	d1395e70-fa72-4c6d-a9d5-f82180e0012d	TypeError: console is not a function
+20241207	18:08:47	51cc9395-b526-418a-974e-14e30fd507fc	TypeError: Cannot read properties of undefined (reading 'username')
+20241207	18:08:47	7fe56fd2-98e5-45eb-b68c-9cf116cdf7da	TypeError: Cannot read properties of undefined (reading 'username')

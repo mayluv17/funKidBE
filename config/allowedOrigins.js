@@ -4,7 +4,7 @@ const allowedOrigins = [
   'http://localhost:3500',
   'http://localhost:3600',
   'http://localhost:5173',
-  'https://funkids.pages.dev'
+  'https://funkids.pages.dev',
 ];
 
 module.exports = allowedOrigins;

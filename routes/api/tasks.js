@@ -4,23 +4,25 @@ const tasksController = require('../../controllers/tasksController');
 const ROLES_LIST = require('../../config/roles_list');
 const verifyRoles = require('../../middleware/verifyRoles');
 
-router.route('/:categoryName')
-    .get(tasksController.getAllTasksBycategory)
-    // .post(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor), employeesController.createNewEmployee)
-    // .put(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor), employeesController.updateEmployee)
-    // .delete(verifyRoles(ROLES_LIST.Admin), employeesController.deleteEmployee);
+const [User, Editor, Admin] = ROLES_LIST;
 
-router.route('/')
-    .get(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor),tasksController.getAllTasks)
+router.route('/:categoryName').get(tasksController.getAllTasksBycategory);
+// .post(verifyRoles(Editor, Admin), employeesController.createNewEmployee)
+// .put(verifyRoles(Editor, Admin), employeesController.updateEmployee)
+// .delete(verifyRoles(ROLES_LIST.Admin), employeesController.deleteEmployee);
 
-router.route('/modifyTask')
-    .put(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor),tasksController.updateTask)
+router.route('/').get(verifyRoles(Editor, Admin), tasksController.getAllTasks);
 
-    
-router.route('/addtask')
-    .post(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor),tasksController.addTask)
+router
+  .route('/modifyTask')
+  .put(verifyRoles(Editor, Admin), tasksController.updateTask);
 
-    router.route('/deleteTask')
-    .delete(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor),tasksController.deleteTask)
+router
+  .route('/addtask')
+  .post(verifyRoles(Editor, Admin), tasksController.addTask);
+
+router
+  .route('/deleteTask')
+  .delete(verifyRoles(Editor, Admin), tasksController.deleteTask);
 
 module.exports = router;

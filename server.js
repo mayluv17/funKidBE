@@ -54,6 +54,7 @@ app.use('/singleTask', require('./routes/api/singleTask'));
 app.use('/singleTaskContent', require('./routes/api/taskData'));
 app.use('/image', require('./routes/api/imageUpload'));
 app.use('/completedTask', require('./routes/api/setTaskCompleted'));
+app.use('/authorizeUser', require('./routes/api/access'));
 
 app.all('*', (req, res) => {
   res.status(404);

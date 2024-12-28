@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const { type } = require("os");
+const mongoose = require('mongoose');
+const { type } = require('os');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -7,16 +7,21 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  roles: {
-    User: {
-      type: Number,
-      default: 2001,
-    },
-    Editor: Number,
-    Admin: Number,
-  },
+  // roles: {
+  //   User: {
+  //     type: Number,
+  //     default: 2001,
+  //   },
+  //   Editor: Number,
+  //   Admin: Number,
+  // },
   password: {
     type: String,
+    required: true,
+  },
+  roles: {
+    type: [String],
+    default: ['User'],
     required: true,
   },
   email: {
@@ -25,13 +30,13 @@ const userSchema = new Schema({
   },
   userVerified: {
     type: Boolean,
-    default: false
+    default: false,
   },
   refreshToken: String,
   points: {
-    type: Number, 
-    default: 0
-  }
+    type: Number,
+    default: 0,
+  },
 });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model('User', userSchema);
